@@ -1,24 +1,24 @@
 ---
-name: ​neptuneCart
+name: ​useCart
 route: /cart
 ---
 
 # Cart
 
-The ```neptuneCart``` hook provides a set of functions to create and interact with a cart.
+The ```useCart``` hook provides a set of functions to create and interact with a cart.
 
 ## Usage
 
 ```js
-import { neptuneCart } from 'neptune-kit';
+import { useCart } from 'neptune-dev-kit';
 
-const { cart, addProduct, removeProduct, updateProduct, clearCart } = neptuneCart();
+const { cart, addProduct, removeProduct, updateProduct, clearCart } = useCart();
 ```
 
-The ```neptuneCart``` hook requires a provider to be wrapped around the component that uses it. The provider is ```CartProvider``` and it can be imported from ```neptune-kit```. Feel free to wrap this around you're entire app or just the component that uses the cart.
+The ```useCart``` hook requires a provider to be wrapped around the component that uses it. The provider is ```CartProvider``` and it can be imported from ```neptune-dev-kit```. Feel free to wrap this around you're entire app or just the component that uses the cart.
 
 ```js
-import { CartProvider } from 'neptune-kit';
+import { CartProvider } from 'neptune-dev-kit';
 
 const App = () => (
   <CartProvider>

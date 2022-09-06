@@ -1,24 +1,24 @@
 ---
-name: ​neptuneProducts
+name: ​useProducts
 route: /products
 ---
 
 # Products
 
-The ```neptuneProducts``` hook provides a set of functions to retrieve products.
+The `useProducts` hook provides a set of functions to retrieve products.
 
 ## Usage
 
 ```js
-import { neptuneProducts } from 'neptune-kit';
+import { useProducts } from "neptune-dev-kit";
 
-const { products, getProducts } = neptuneProducts();
+const { products, getProducts } = useProducts();
 ```
 
-The ```neptuneProduct``` hook requires a provider to be wrapped around the component that uses it. The provider is ```ProductProvider``` and it can be imported from ```neptune-kit```. Feel free to wrap this around you're entire app or just the component that uses the Product.
+The `useProducts` hook requires a provider to be wrapped around the component that uses it. The provider is `ProductProvider` and it can be imported from `neptune-dev-kit`. Feel free to wrap this around you're entire app or just the component that uses the Product.
 
 ```js
-import { ProductProvider } from 'neptune-kit';
+import { ProductProvider } from "neptune-dev-kit";
 
 const App = () => (
   <ProductProvider>
@@ -29,7 +29,7 @@ const App = () => (
 
 ## products
 
-The ```products``` object contains the current state of the products. It has the following structure:
+The `products` object contains the current state of the products. It has the following structure:
 
 ```js
 [
@@ -43,22 +43,22 @@ The ```products``` object contains the current state of the products. It has the
         id: string,
         url: string,
         alt: string,
-      }
-    ]
-  }
-]
+      },
+    ],
+  },
+];
 ```
 
 ## getProducts
 
-The ```getProducts``` function retrieves products from Neptune. It accepts a query object as a parameter and returns a promise that resolves to the updated products.
+The `getProducts` function retrieves products from Neptune. It accepts a query object as a parameter and returns a promise that resolves to the updated products.
 
 ```js
 const query = {
   limit: 10,
   offset: 0,
-  sort: 'name',
-  order: 'asc',
+  sort: "name",
+  order: "asc",
 };
 
 getProducts(query).then((products) => {

@@ -1,24 +1,24 @@
 ---
-name: ​neptuneOrders
+name: ​useOrders
 route: /orders
 ---
 
 # Orders
 
-The ```neptuneOrders``` hook provides a set of functions to create orders.
+The ```useOrders``` hook provides a set of functions to create orders.
 
 ## Usage
 
 ```js
-import { neptuneOrders } from 'neptune-kit';
+import { useOrders } from 'neptune-dev-kit';
 
-const { createOrder } = neptuneOrders();
+const { createOrder } = useOrders();
 ```
 
-The ```neptuneOrders``` hook requires a provider to be wrapped around the component that uses it. The provider is ```OrdersProvider``` and it can be imported from ```neptune-kit```. Feel free to wrap this around you're entire app or just the component that uses the Orders.
+The ```useOrders``` hook requires a provider to be wrapped around the component that uses it. The provider is ```OrdersProvider``` and it can be imported from ```neptune-dev-kit```. Feel free to wrap this around you're entire app or just the component that uses the Orders.
 
 ```js
-import { OrdersProvider } from 'neptune-kit';
+import { OrdersProvider } from 'neptune-dev-kit';
 
 const App = () => (
   <OrdersProvider>
