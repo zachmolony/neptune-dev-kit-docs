@@ -7,7 +7,11 @@ const Wrapper = ({ children, doc }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Neptune Developer Kit</title>
-        <link rel="icon" type="image/png" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="https://firebasestorage.googleapis.com/v0/b/tradar-f2246.appspot.com/o/favicon.ico?alt=media&token=a8ec953f-3774-4779-bd09-0af6acbb7591"
+        />
         <link href="http://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
