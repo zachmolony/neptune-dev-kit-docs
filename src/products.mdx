@@ -15,9 +15,19 @@ import { neptuneProducts } from 'neptune-kit';
 const { products, getProducts } = neptuneProducts();
 ```
 
-## API
+The ```neptuneProduct``` hook requires a provider to be wrapped around the component that uses it. The provider is ```ProductProvider``` and it can be imported from ```neptune-kit```. Feel free to wrap this around you're entire app or just the component that uses the Product.
 
-### products
+```js
+import { ProductProvider } from 'neptune-kit';
+
+const App = () => (
+  <ProductProvider>
+    <Component />
+  </ProductProvider>
+);
+```
+
+## products
 
 The ```products``` object contains the current state of the products. It has the following structure:
 
@@ -39,7 +49,7 @@ The ```products``` object contains the current state of the products. It has the
 ]
 ```
 
-### getProducts
+## getProducts
 
 The ```getProducts``` function retrieves products from Neptune. It accepts a query object as a parameter and returns a promise that resolves to the updated products.
 
@@ -55,44 +65,3 @@ getProducts(query).then((products) => {
   console.log(products);
 });
 ```
-
-# Contributing
-
-We welcome contributions from the community. Please see our [contributing guidelines]() for more information.
-
-# Support
-
-If you have any questions, please [contact us](https://neptune.io/contact) or [open an issue]() on GitHub.
-
-# Changelog
-
-## 0.1.0
-
-- Initial release
-
-# Disclaimer
-
-This project is not affiliated with, sponsored by, or endorsed by Stripe, Shopify, or BigCommerce.
-
-# Code of Conduct
-
-This project adheres to the Contributor Covenant [code of conduct](https://github.com/neptuneio/neptune-kit/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [](mailto:).
-
-# Security
-
-If you discover a security vulnerability within this project, please send an e-mail to [](mailto:) or open an issue on GitHub. All security vulnerabilities will be promptly addressed. 
-
-
-
-# Contributing
-
-Please see [contributing guidelines]() for details.
-
-# Credits
-
-- [Neptune](https://neptune.io)
-
-# License
-
-The MIT License (MIT). Please see [License File]() for more information.
-

@@ -15,9 +15,19 @@ import { neptuneCart } from 'neptune-kit';
 const { cart, addProduct, removeProduct, updateProduct, clearCart } = neptuneCart();
 ```
 
-## API
+The ```neptuneCart``` hook requires a provider to be wrapped around the component that uses it. The provider is ```CartProvider``` and it can be imported from ```neptune-kit```. Feel free to wrap this around you're entire app or just the component that uses the cart.
 
-### cart
+```js
+import { CartProvider } from 'neptune-kit';
+
+const App = () => (
+  <CartProvider>
+    <Component />
+  </CartProvider>
+);
+```
+
+## cart
 
 The ```cart``` object contains the current state of the cart. It has the following structure:
 
@@ -46,7 +56,7 @@ The ```cart``` object contains the current state of the cart. It has the followi
 }
 ```
 
-### addProduct
+## addProduct
 
 The ```addProduct``` function adds a product to the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
 
@@ -70,7 +80,7 @@ addProduct(product).then((cart) => {
 });
 ```
 
-### removeProduct
+## removeProduct
 
 The ```removeProduct``` function removes a product from the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
 
@@ -80,7 +90,7 @@ removeProduct('1').then((cart) => {
 });
 ```
 
-### incrementProductQuantity
+## incrementProductQuantity
 
 The ```incrementProductQuantity``` function increments the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
 
@@ -90,7 +100,7 @@ incrementProductQuantity('1').then((cart) => {
 });
 ```
 
-### decrementProductQuantity
+## decrementProductQuantity
 
 The ```decrementProductQuantity``` function decrements the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
 
@@ -99,8 +109,8 @@ decrementProductQuantity('1').then((cart) => {
   console.log(cart);
 });
 ```
-
-### updateProduct
+<!-- 
+## updateProduct
 
 The ```updateProduct``` function updates a product in the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
 
@@ -123,9 +133,9 @@ const product = {
 updateProduct(product).then((cart) => {
   console.log(cart);
 });
-```
+``` -->
 
-### clearCart
+## clearCart
 
 The ```clearCart``` function removes all products from the cart. It returns a promise that resolves to the updated cart.
 
