@@ -1,0 +1,137 @@
+---
+name: ​neptuneCart
+route: /cart
+---
+
+# Cart
+
+The ```neptuneCart``` hook provides a set of functions to create and interact with a cart.
+
+## Usage
+
+```js
+import { neptuneCart } from 'neptune-kit';
+
+const { cart, addProduct, removeProduct, updateProduct, clearCart } = neptuneCart();
+```
+
+## API
+
+### cart
+
+The ```cart``` object contains the current state of the cart. It has the following structure:
+
+```js
+{
+  id: string,
+  items: [
+    {
+      id: string,
+      quantity: number,
+      product: {
+        id: string,
+        name: string,
+        description: string,
+        price: number,
+        images: [
+          {
+            id: string,
+            url: string,
+            alt: string,
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+### addProduct
+
+The ```addProduct``` function adds a product to the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
+
+```js
+const product = {
+  id: '1',
+  name: 'Product 1',
+  description: 'Product 1 description',
+  price: 10,
+  images: [
+    {
+      id: '1',
+      url: 'https://example.com/image.jpg',
+      alt: 'Product 1 image',
+    }
+  ]
+};
+
+addProduct(product).then((cart) => {
+  console.log(cart);
+});
+```
+
+### removeProduct
+
+The ```removeProduct``` function removes a product from the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+
+```js
+removeProduct('1').then((cart) => {
+  console.log(cart);
+});
+```
+
+### incrementProductQuantity
+
+The ```incrementProductQuantity``` function increments the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+
+```js
+incrementProductQuantity('1').then((cart) => {
+  console.log(cart);
+});
+```
+
+### decrementProductQuantity
+
+The ```decrementProductQuantity``` function decrements the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+
+```js
+decrementProductQuantity('1').then((cart) => {
+  console.log(cart);
+});
+```
+
+### updateProduct
+
+The ```updateProduct``` function updates a product in the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
+
+```js
+
+const product = {
+  id: '1',
+  name: 'Product 1',
+  description: 'Product 1 description',
+  price: 10,
+  images: [
+    {
+      id: '1',
+      url: 'https://example.com/image.jpg',
+      alt: 'Product 1 image',
+    }
+  ]
+};
+
+updateProduct(product).then((cart) => {
+  console.log(cart);
+});
+```
+
+### clearCart
+
+The ```clearCart``` function removes all products from the cart. It returns a promise that resolves to the updated cart.
+
+```js
+clearCart().then((cart) => {
+  console.log(cart);
+});
+```
+

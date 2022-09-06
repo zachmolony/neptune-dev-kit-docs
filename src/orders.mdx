@@ -1,0 +1,101 @@
+---
+name: ​neptuneOrders
+route: /orders
+---
+
+# Orders
+
+The ```neptuneOrders``` hook provides a set of functions to create orders.
+
+## Usage
+
+```js
+import { neptuneOrders } from 'neptune-kit';
+
+const { createOrder } = neptuneOrders();
+```
+
+## API
+
+### createOrder
+
+The ```createOrder``` function creates an order. It accepts an order object as a parameter and returns a promise that resolves to the created order.
+
+```js
+const order = {
+  cartId: '1',
+  shippingAddress: {
+    firstName: 'John',
+    lastName: 'Doe',
+    address1: '123 Main St',
+    address2: 'Apt 1',
+    city: 'New York',
+    state: 'NY',
+    zip: '10001',
+    country: 'US',
+  },
+  billingAddress: {
+    firstName: 'John',
+    lastName: 'Doe',
+    address1: '123 Main St',
+    address2: 'Apt 1',
+    city: 'New York',
+    state: 'NY',
+    zip: '10001',
+    country: 'US',
+  },
+  paymentMethod: {
+    id: '1',
+    name: 'Visa',
+    type: 'credit_card',
+    last4: '4242',
+    expMonth: 1,
+    expYear: 2022,
+  },
+};
+
+createOrder(order).then((order) => {
+  console.log(order);
+});
+```
+
+# Contributing
+
+We welcome contributions from the community. Please see our [contributing guidelines]() for more information.
+
+# Support
+
+If you have any questions, please [contact us](https://neptune.io/contact) or [open an issue]() on GitHub.
+
+# Changelog
+
+## 0.1.0
+
+- Initial release
+
+# Disclaimer
+
+This project is not affiliated with, sponsored by, or endorsed by Stripe, Shopify, or BigCommerce.
+
+# Code of Conduct
+
+This project adheres to the Contributor Covenant [code of conduct](https://github.com/neptuneio/neptune-kit/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [](mailto:).
+
+# Security
+
+If you discover a security vulnerability within this project, please send an e-mail to [](mailto:) or open an issue on GitHub. All security vulnerabilities will be promptly addressed. 
+
+
+
+# Contributing
+
+Please see [contributing guidelines]() for details.
+
+# Credits
+
+- [Neptune](https://neptune.io)
+
+# License
+
+The MIT License (MIT). Please see [License File]() for more information.
+
