@@ -3,22 +3,31 @@ name: ​useCart
 route: /cart
 ---
 
-# Cart
+# useCart
 
-The ```useCart``` hook provides a set of functions to create and interact with a cart.
+The `useCart` hook provides a set of functions to create and interact with a cart.
 
 ## Usage
 
 ```js
-import { useCart } from 'neptune-dev-kit';
+import { useCart } from "neptune-dev-kit";
 
-const { cart, addProduct, removeProduct, updateProduct, clearCart } = useCart();
+const {
+  cart,
+  addProduct,
+  removeProduct,
+  incrementProductQuantity,
+  decrementProductQuantity,
+  clearCart,
+  isEmpty,
+  cartSize,
+} = useCart();
 ```
 
-The ```useCart``` hook requires a provider to be wrapped around the component that uses it. The provider is ```CartProvider``` and it can be imported from ```neptune-dev-kit```. Feel free to wrap this around you're entire app or just the component that uses the cart.
+The `useCart` hook requires a provider to be wrapped around the component that uses it. The provider is `CartProvider` and it can be imported from `neptune-dev-kit`. Feel free to wrap this around your entire app or just the component that uses the cart.
 
 ```js
-import { CartProvider } from 'neptune-dev-kit';
+import { CartProvider } from "neptune-dev-kit";
 
 const App = () => (
   <CartProvider>
@@ -29,119 +38,152 @@ const App = () => (
 
 ## cart
 
-The ```cart``` object contains the current state of the cart. It has the following structure:
+The `cart` object contains the current state of the cart. It consists of an array of Product Objects, although **_should not be directly manipulated_**. Instead, use the functions provided by the hook to manipulate the cart.
 
 ```js
-{
-  id: string,
-  items: [
-    {
-      id: string,
-      quantity: number,
-      product: {
-        id: string,
-        name: string,
-        description: string,
-        price: number,
-        images: [
-          {
-            id: string,
-            url: string,
-            alt: string,
-          }
-        ]
-      }
-    }
-  ]
-}
+const { cart } = useCart();
+
+console.log(cart);
+
+// [
+//   {
+//     id: "1",
+//     name: "Product 1",
+//     price: 10,
+//     quantity: 1,
+//   },
+//   {
+//     id: "2",
+//     name: "Product 2",
+//     price: 20,
+//     quantity: 2,
+//   },
+// ];
 ```
 
 ## addProduct
 
-The ```addProduct``` function adds a product to the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
+The `addProduct` function adds a product to the cart. It accepts a product object as a parameter, the same as the one from the `useProducts` hook.
 
 ```js
+const { addProduct } = useCart();
+
 const product = {
-  id: '1',
-  name: 'Product 1',
-  description: 'Product 1 description',
+  id: "1",
+  name: "Product 1",
+  description: "Product 1 description",
   price: 10,
   images: [
     {
-      id: '1',
-      url: 'https://example.com/image.jpg',
-      alt: 'Product 1 image',
-    }
-  ]
+      id: "1",
+      url: "https://example.com/image.jpg",
+      alt: "Product 1 image",
+    },
+  ],
 };
 
-addProduct(product).then((cart) => {
-  console.log(cart);
-});
+addProduct(product);
 ```
 
 ## removeProduct
 
-The ```removeProduct``` function removes a product from the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+The `removeProduct` function removes a product from the cart. It accepts a product `id` as a parameter.
 
 ```js
-removeProduct('1').then((cart) => {
-  console.log(cart);
-});
+const { removeProduct } = useCart();
+
+removeProduct(product.id);
 ```
 
 ## incrementProductQuantity
 
-The ```incrementProductQuantity``` function increments the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+The `incrementProductQuantity` function increments the quantity of a product in the cart. It accepts a product `id` as a parameter.
 
 ```js
-incrementProductQuantity('1').then((cart) => {
-  console.log(cart);
-});
+const { incrementProductQuantity } = useCart();
+
+incrementProductQuantity(product.id);
 ```
 
 ## decrementProductQuantity
 
-The ```decrementProductQuantity``` function decrements the quantity of a product in the cart. It accepts a product id as a parameter and returns a promise that resolves to the updated cart.
+The `decrementProductQuantity` function decrements the quantity of a product in the cart. It accepts a product `id` as a parameter.
 
 ```js
-decrementProductQuantity('1').then((cart) => {
-  console.log(cart);
-});
+const { decrementProductQuantity } = useCart();
+
+decrementProductQuantity(product.id);
 ```
-<!-- 
-## updateProduct
-
-The ```updateProduct``` function updates a product in the cart. It accepts a product object as a parameter and returns a promise that resolves to the updated cart.
-
-```js
-
-const product = {
-  id: '1',
-  name: 'Product 1',
-  description: 'Product 1 description',
-  price: 10,
-  images: [
-    {
-      id: '1',
-      url: 'https://example.com/image.jpg',
-      alt: 'Product 1 image',
-    }
-  ]
-};
-
-updateProduct(product).then((cart) => {
-  console.log(cart);
-});
-``` -->
 
 ## clearCart
 
-The ```clearCart``` function removes all products from the cart. It returns a promise that resolves to the updated cart.
+The `clearCart` function removes all products from the cart. It accepts no parameters.
 
 ```js
-clearCart().then((cart) => {
-  console.log(cart);
-});
+const { clearCart } = useCart();
+
+clearCart();
 ```
 
+## isEmpty
+
+The `isEmpty` function returns a boolean indicating if the cart is empty. It accepts no parameters.
+
+```js
+const { isEmpty } = useCart();
+
+isEmpty(); // true
+```
+
+## cartSize
+
+The `cartSize` function returns the number of products in the cart. It accepts no parameters.
+
+```js
+const { cartSize } = useCart();
+
+cartSize(); // 0
+```
+
+## Example
+
+```js
+import { useCart } from "neptune-dev-kit";
+
+const CartPage = () => {
+  const {
+    cart,
+    addProduct,
+    removeProduct,
+    incrementProductQuantity,
+    decrementProductQuantity,
+    clearCart,
+    isEmpty,
+    cartSize,
+  } = useCart();
+
+  return (
+    <div>
+      <h1>Cart</h1>
+      <button onClick={() => clearCart()}>Clear Cart</button>
+      <p>Cart is empty: {isEmpty() ? "Yes" : "No"}</p>
+      <p>Cart size: {cartSize()}</p>
+      <ul>
+        {cart.items.map((item) => (
+          <li key={item.id}>
+            <p>{item.product.name}</p>
+            <p>{item.product.description}</p>
+            <p>{item.product.price}</p>
+            <p>Quantity: {item.quantity}</p>
+            <button onClick={() => removeProduct(item.id)}>Remove</button>
+            <button onClick={() => incrementProductQuantity(item.id)}>+</button>
+            <button onClick={() => decrementProductQuantity(item.id)}>-</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default CartPage;
+```
