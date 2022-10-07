@@ -21,6 +21,7 @@ const {
   clearCart,
   isEmpty,
   cartSize,
+  cartTotal,
 } = useCart();
 ```
 
@@ -137,12 +138,22 @@ isEmpty(); // true
 
 ## cartSize
 
-The `cartSize` function returns the number of products in the cart. It accepts no parameters.
+The `cartSize` function returns the total number of products in the cart, acknowledging the quantity of each product. It accepts no parameters.
 
 ```js
 const { cartSize } = useCart();
 
 cartSize(); // 0
+```
+
+## cartTotal
+
+The `cartTotal` function returns the total price of all products in the cart. It accepts no parameters.
+
+```js
+const { cartTotal } = useCart();
+
+cartTotal(); // 0
 ```
 
 ## Example
@@ -160,30 +171,34 @@ const CartPage = () => {
     clearCart,
     isEmpty,
     cartSize,
+    cartTotal,
   } = useCart();
 
   return (
     <div>
       <h1>Cart</h1>
-      <button onClick={() => clearCart()}>Clear Cart</button>
-      <p>Cart is empty: {isEmpty() ? "Yes" : "No"}</p>
-      <p>Cart size: {cartSize()}</p>
-      <ul>
-        {cart.items.map((item) => (
-          <li key={item.id}>
-            <p>{item.product.name}</p>
-            <p>{item.product.description}</p>
-            <p>{item.product.price}</p>
-            <p>Quantity: {item.quantity}</p>
-            <button onClick={() => removeProduct(item.id)}>Remove</button>
-            <button onClick={() => incrementProductQuantity(item.id)}>+</button>
-            <button onClick={() => decrementProductQuantity(item.id)}>-</button>
-          </li>
-        ))}
-      </ul>
+      {isEmpty() ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <div>
+          <p>Cart size: {cartSize()}</p>
+          <p>Cart total: {cartTotal()}</p>
+          <ul>
+            {cart.map((product) => (
+              <li key={product.id}>
+                <p>{product.name}</p>
+                <p>Quantity: {product.quantity}</p>
+                <p>Price: {product.price}</p>
+                <button onClick={() => incrementProductQuantity(product.id)}>+</button>
+                <button onClick={() => decrementProductQuantity(product.id)}>-</button>
+                <button onClick={() => removeProduct(product.id)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+          <button onClick={clearCart()}>Clear cart</button>
+        </div>
+      )}
     </div>
   );
 };
-
-export default CartPage;
 ```
